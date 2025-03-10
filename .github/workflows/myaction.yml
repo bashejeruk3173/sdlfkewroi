@@ -19,10 +19,16 @@ jobs:
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
-    - name: Install VS Code
+    - name: Install VS Code via Winget
+      timeout-minutes: 5
       run: |
-        Invoke-WebRequest -Uri "https://update.code.visualstudio.com/latest/win32-x64-user/stable" -OutFile "VSCodeSetup.exe"
-        Start-Process "VSCodeSetup.exe" -ArgumentList "/VERYSILENT /NORESTART" -NoNewWindow -Wait
+        winget install --id Microsoft.VisualStudioCode --silent --accept-package-agreements --accept-source-agreements
+
+    - name: Verify VS Code Installation
+      run: |
+        if (!(Test-Path "C:\Users\runneradmin\AppData\Local\Programs\Microsoft VS Code\Code.exe")) {
+          Write-Error "VS Code installation failed!"
+        }
 
     - name: Enable Remote Desktop
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
