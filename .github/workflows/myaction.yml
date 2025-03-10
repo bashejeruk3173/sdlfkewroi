@@ -47,4 +47,4 @@ jobs:
       run: Start-Process "C:\Program Files\Microsoft VS Code\Code.exe"
 
     - name: Create Ngrok Tunnel
-      run: .\ngrok\ngrok.exe tcp 3389 --region=us
+      run: .\ngrok\ngrok.exe tcp 3389 --region=us-cal-1
