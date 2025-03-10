@@ -19,14 +19,12 @@ jobs:
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
-    - name: Install VS Code via Winget
-      timeout-minutes: 5
-      run: |
-        winget install --id Microsoft.VisualStudioCode --silent --accept-package-agreements --accept-source-agreements
+    - name: Install VS Code via Chocolatey
+      run: choco install vscode -y --no-progress
 
     - name: Verify VS Code Installation
       run: |
-        if (!(Test-Path "C:\Users\runneradmin\AppData\Local\Programs\Microsoft VS Code\Code.exe")) {
+        if (!(Test-Path "C:\Program Files\Microsoft VS Code\Code.exe")) {
           Write-Error "VS Code installation failed!"
         }
 
@@ -46,7 +44,7 @@ jobs:
       run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
 
     - name: Launch VS Code
-      run: Start-Process "C:\Users\runneradmin\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+      run: Start-Process "C:\Program Files\Microsoft VS Code\Code.exe"
 
     - name: Create Ngrok Tunnel
       run: .\ngrok\ngrok.exe tcp 3389 --region=us
