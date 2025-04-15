@@ -34,8 +34,5 @@ jobs:
     - name: Set User Password
       run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
 
-    - name: Launch VS Code
-      run: Start-Process "C:\Program Files\Microsoft VS Code\Code.exe"
-
     - name: Create Ngrok Tunnel
       run: .\ngrok\ngrok.exe tcp 3389 --region=us-cal-1
