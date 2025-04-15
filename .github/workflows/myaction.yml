@@ -19,15 +19,6 @@ jobs:
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
-    - name: Install VS Code via Chocolatey
-      run: choco install vscode -y --no-progress
-
-    - name: Verify VS Code Installation
-      run: |
-        if (!(Test-Path "C:\Program Files\Microsoft VS Code\Code.exe")) {
-          Write-Error "VS Code installation failed!"
-        }
-
     - name: Enable Remote Desktop
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
 
