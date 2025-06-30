@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-        - name: Print OS Information
+    - name: Print OS Information
       run: |
         Write-Host "Operating System Information:"
         systeminfo | Select-String "OS"  # Displays the OS version, build, and architecture
