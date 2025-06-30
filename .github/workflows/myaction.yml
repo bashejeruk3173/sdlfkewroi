@@ -8,6 +8,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
+        - name: Print OS Information
+      run: |
+        Write-Host "Operating System Information:"
+        systeminfo | Select-String "OS"  # Displays the OS version, build, and architecture
+        Write-Host "Architecture Information:"
+        [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture  # Print OS architecture (x86, x64)
+
     - name: Download Ngrok
       run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
 
