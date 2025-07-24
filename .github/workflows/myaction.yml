@@ -3,7 +3,7 @@ name: CI
 on: [push, workflow_dispatch]
 
 jobs:
-  # LINUX CLI JOB
+  # LINUX CLI J
   linux-cli:
     runs-on: ubuntu-latest
 
